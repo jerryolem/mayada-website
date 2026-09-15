@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mayada Limited — Engineering The Future With Innovation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --forest-dark: #051A14;
+      --forest: #072B20;
+      --forest-mid: #103B2E;
+      --gold: #F4B333;
+      --gold-dark: #D49822;
+      --gold-light: #F9C966;
+      --ink: #111111;
+      --ink-muted: #555555;
+      --bg-light: #F7F8F7;
+      --white: #FFFFFF;
+      --line: #E5E5E2;
+      --radius: 12px;
+      --container: 1240px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--ink);
+      background-color: var(--white);
+      line-height: 1.6;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* --- SITE HEADER --- */
+    .site-header {
+      background: var(--forest-dark);
+      color: var(--white);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 85px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-logo {
+      width: 44px;
+      height: 44px;
+    }
+    .brand-text {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      font-size: 1.45rem;
+      letter-spacing: -0.01em;
+      color: var(--white);
+      display: block;
+      line-height: 1.1;
+    }
+    .brand-sub {
+      font-size: 0.65rem;
+      letter-spacing: 0.05em;
+      color: rgba(255, 255, 255, 0.8);
+      display: block;
+      margin-top: 2px;
+      font-weight: 500;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+    .nav-links a {
+      color: var(--white);
+      transition: color 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      position: relative;
+      padding-bottom: 4px;
+    }
+    .nav-links a svg { width: 12px; height: 12px; opacity: 0.7; }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a.active::after {
+      content: ''; position: absolute; bottom: -4px; left: 0; width: 100%; height: 2px; background-color: var(--gold);
+    }
+
+    .btn-get-started {
+      background: var(--gold); color: var(--forest-dark); font-weight: 600; font-size: 0.85rem; padding: 12px 28px; border-radius: 999px; transition: all 0.2s ease;
+    }
+    .btn-get-started:hover { background: var(--gold-light); }
+
+    /* --- HERO SECTION --- */
+    .hero {
+      background: radial-gradient(circle at top right, #0A3528 0%, #051A14 60%); color: var(--white); position: relative; overflow: hidden; padding: 96px 0 120px;
+    }
+    .hero-grid { display: grid; grid-template-columns: 1fr 1.1fr; align-items: center; gap: 60px; }
+    .hero-kicker { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 24px; display: flex; gap: 12px; align-items: center; }
+    .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 4.5vw, 4rem); font-weight: 600; line-height: 1.1; margin-bottom: 24px; }
+    .hero-desc { font-size: 1.05rem; color: rgba(255, 255, 255, 0.85); margin-bottom: 40px; line-height: 1.7; max-width: 90%; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 10px; background: var(--gold); color: var(--forest-dark); font-weight: 600; font-size: 0.9rem; padding: 16px 32px; border-radius: 999px; transition: all 0.2s ease; border: none; cursor: pointer; }
+    .btn-primary:hover { background: var(--gold-light); }
+
+    .hero-visual-stage { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+    .hero-visual-main { width: 100%; position: relative; z-index: 5; }
+    .hero-visual-main img { width: 100%; height: auto; border-radius: 8px; }
+    
+    .floating-badge { position: absolute; width: 52px; height: 52px; border-radius: 50%; background: rgba(5, 26, 20, 0.6); border: 1px solid rgba(255, 255, 255, 0.2); display: flex; align-items: center; justify-content: center; color: var(--white); backdrop-filter: blur(8px); z-index: 10; }
+    .floating-badge svg { width: 24px; height: 24px; stroke: var(--white); }
+    .badge-cloud { top: -20px; right: 40%; }
+    .badge-leaf { top: -30px; right: 15%; stroke: var(--white); }
+    .badge-edu { top: 15%; right: -5%; }
+    .badge-bus { top: 40%; right: -10%; }
+    .badge-gear { top: 65%; right: -5%; }
+
+    /* --- SERVICES SECTION --- */
+    .services { padding: 100px 0; background: var(--bg-light); }
+    .services-container { display: grid; grid-template-columns: 1fr; gap: 40px; }
+    .services-header { max-width: 480px; margin-bottom: 30px; }
+    .section-kicker { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-dark); font-weight: 700; margin-bottom: 16px; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 3.5vw, 2.8rem); font-weight: 600; color: var(--ink); line-height: 1.15; margin-bottom: 24px; }
+    .section-intro { font-size: 0.95rem; color: var(--ink-muted); margin-bottom: 24px; line-height: 1.6; }
+    .gold-divider { width: 40px; height: 2px; background: var(--gold); margin-bottom: 32px; }
+    .btn-dark { display: inline-flex; align-items: center; gap: 10px; background: var(--forest); color: var(--white); font-weight: 500; font-size: 0.85rem; padding: 14px 28px; border-radius: 999px; transition: all 0.2s ease; }
+    .btn-dark:hover { background: var(--forest-dark); }
+
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+    .service-card { background: var(--white); border-radius: 4px; overflow: hidden; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04); display: flex; flex-direction: column; }
+    .service-img-wrap { height: 190px; position: relative; }
+    .service-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .service-body { padding: 32px 24px 24px; position: relative; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+    .service-icon-badge { position: absolute; top: -24px; left: 24px; width: 48px; height: 48px; background: var(--white); border: 1px solid #EAEAEA; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--forest); box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+    .service-icon-badge svg { width: 22px; height: 22px; stroke-width: 1.5; }
+    .service-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 8px; color: var(--ink); }
+    .service-card p { font-size: 0.85rem; color: var(--ink-muted); margin-bottom: 20px; line-height: 1.5; }
+    .service-link { color: var(--ink); display: inline-flex; align-items: center; font-weight: 500; opacity: 0.7; }
+    .service-link svg { width: 16px; height: 16px; }
+
+    /* --- WHY MAYADA SECTION --- */
+    .why-mayada { background: linear-gradient(rgba(5, 26, 20, 0.92), rgba(5, 26, 20, 0.92)), url('https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=2000&q=80') center/cover; color: var(--white); padding: 100px 0; position: relative; }
+    .why-grid { display: grid; grid-template-columns: 1fr 1.2fr; align-items: center; gap: 60px; }
+    .why-kicker { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 16px; }
+    .why-title { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 3.5vw, 2.8rem); font-weight: 600; margin-bottom: 24px; line-height: 1.15; }
+    .why-desc { font-size: 1rem; color: rgba(255, 255, 255, 0.85); margin-bottom: 48px; line-height: 1.7; max-width: 90%; }
+    .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px 20px; }
+    .stat-number { font-family: 'Montserrat', sans-serif; font-size: 2.8rem; font-weight: 600; color: var(--gold); line-height: 1; margin-bottom: 8px; }
+    .stat-label { font-size: 0.85rem; color: rgba(255, 255, 255, 0.9); font-weight: 500; max-width: 120px; line-height: 1.4; }
+    .why-right { position: relative; }
+    .why-right img { width: 100%; border-radius: 8px; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.4)); }
+    .handwritten-text { position: absolute; right: -20px; bottom: 20px; font-family: 'Caveat', cursive; color: var(--gold); font-size: 2rem; line-height: 1.1; transform: rotate(-8deg); text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+
+    /* --- ABOUT MAYADA SECTION --- */
+    .about-mayada { padding: 100px 0; background: var(--bg-light); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1.3fr 0.7fr; gap: 60px; align-items: center; }
+    .about-content .section-kicker { margin-bottom: 12px; }
+    .about-content h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 3vw, 2.4rem); font-weight: 600; color: var(--ink); margin-bottom: 20px; line-height: 1.2; }
+    .about-content p { font-size: 0.95rem; color: var(--ink-muted); margin-bottom: 32px; line-height: 1.7; }
+    .btn-outline-gold { display: inline-flex; align-items: center; gap: 10px; background: var(--white); color: var(--gold-dark); border: 1px solid var(--gold); font-weight: 500; font-size: 0.85rem; padding: 12px 28px; border-radius: 999px; transition: all 0.2s ease; }
+    .btn-outline-gold:hover { background: var(--gold); color: var(--white); }
+    .about-image img { width: 100%; border-radius: 8px; object-fit: cover; height: 400px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+    .about-pillars { display: flex; flex-direction: column; gap: 16px; }
+    .pillar-item { font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 500; color: var(--forest); }
+    .pillar-line { width: 30px; height: 2px; background: var(--gold); margin-top: 8px; }
+
+    /* --- CEO MESSAGE SECTION --- */
+    .ceo-message { padding: 100px 0; background: var(--white); }
+    .ceo-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 80px; align-items: center; }
+    .ceo-image-wrap { position: relative; }
+    .ceo-image-wrap img { width: 100%; border-radius: var(--radius); box-shadow: 0 20px 40px rgba(0,0,0,0.08); border: 1px solid var(--line); aspect-ratio: 4/5; object-fit: cover; object-position: center top; }
+    .ceo-badge { position: absolute; bottom: -20px; right: -20px; background: var(--gold); color: var(--forest-dark); font-weight: 700; font-size: 0.85rem; padding: 14px 28px; border-radius: 999px; box-shadow: 0 10px 20px rgba(244, 179, 51, 0.3); letter-spacing: 0.05em; }
+    .ceo-content .section-kicker { color: var(--forest); margin-bottom: 12px; }
+    .ceo-content .section-title { margin-bottom: 40px; }
+    .ceo-quote-wrap { position: relative; margin-bottom: 40px; }
+    .quote-mark { position: absolute; top: -30px; left: -20px; font-family: 'Playfair Display', serif; font-size: 6rem; color: var(--gold); opacity: 0.2; line-height: 1; z-index: 0; }
+    .ceo-quote { font-size: 1.15rem; line-height: 1.8; color: var(--ink); font-style: italic; font-weight: 500; position: relative; z-index: 1; }
+    .ceo-signature { border-left: 3px solid var(--gold); padding-left: 20px; }
+    .ceo-name { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--forest-dark); margin-bottom: 4px; }
+    .ceo-title { font-size: 0.9rem; color: var(--ink-muted); font-weight: 500; }
+
+    /* --- PORTFOLIO & CONTACT --- */
+    .portfolio { padding: 100px 0; background: var(--forest-dark); color: var(--white); }
+    .portfolio .section-title { color: var(--white); }
+    .portfolio .section-kicker { color: var(--gold); }
+    .portfolio-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-top: 50px; }
+    .portfolio-item { position: relative; border-radius: 8px; overflow: hidden; cursor: pointer; }
+    .portfolio-item img { width: 100%; height: 380px; object-fit: cover; transition: transform 0.6s ease; }
+    .portfolio-item:hover img { transform: scale(1.05); }
+    .portfolio-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(5,26,20,0.95) 0%, rgba(5,26,20,0.1) 70%); display: flex; flex-direction: column; justify-content: flex-end; padding: 40px; }
+    .portfolio-overlay h3 { font-size: 1.4rem; color: var(--white); margin-bottom: 8px; font-family: 'Playfair Display', serif; }
+    .portfolio-overlay p { font-size: 0.9rem; color: var(--gold); font-weight: 500; letter-spacing: 0.05em; }
+
+    .contact { padding: 100px 0; background: var(--bg-light); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 60px; }
+    .contact-info { display: flex; flex-direction: column; gap: 40px; margin-top: 30px; }
+    .contact-item { display: flex; gap: 20px; }
+    .contact-icon { width: 52px; height: 52px; background: var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--forest); box-shadow: 0 4px 15px rgba(0,0,0,0.04); flex-shrink: 0; }
+    .contact-icon svg { width: 22px; height: 22px; stroke-width: 1.5; }
+    .contact-item h4 { font-size: 1.05rem; margin-bottom: 6px; color: var(--ink); }
+    .contact-item p { font-size: 0.9rem; color: var(--ink-muted); line-height: 1.5; }
+    
+    .contact-form { background: var(--white); padding: 48px; border-radius: var(--radius); box-shadow: 0 10px 40px rgba(0,0,0,0.04); }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+    .form-group { margin-bottom: 24px; }
+    .form-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 8px; color: var(--ink); }
+    .form-control { width: 100%; padding: 14px 16px; border: 1px solid var(--line); border-radius: 6px; font-family: inherit; font-size: 0.95rem; transition: border-color 0.2s; }
+    .form-control:focus { outline: none; border-color: var(--gold); }
+    textarea.form-control { height: 140px; resize: vertical; }
+
+    /* --- FOOTER --- */
+    .site-footer { background: var(--forest-dark); color: rgba(255,255,255,0.7); padding: 80px 0 30px; border-top: 1px solid rgba(255,255,255,0.05); }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 50px; margin-bottom: 60px; }
+    .footer-brand { margin-bottom: 24px; display: inline-flex; }
+    .footer-desc { font-size: 0.95rem; line-height: 1.7; max-width: 320px; }
+    .footer-heading { font-size: 1.1rem; color: var(--white); font-weight: 600; margin-bottom: 24px; font-family: 'Playfair Display', serif; }
+    .footer-links { display: flex; flex-direction: column; gap: 14px; list-style: none; }
+    .footer-links a { font-size: 0.9rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 0.85rem; display: flex; justify-content: space-between; align-items: center; }
+
+    /* --- FLOATING CHATBOT CSS --- */
+    .chatbot-widget {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 1000;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .chatbot-toggle {
+      width: 65px;
+      height: 65px;
+      background: var(--gold);
+      color: var(--forest-dark);
+      border: none;
+      border-radius: 50%;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.2s;
+    }
+    .chatbot-toggle:hover {
+      transform: scale(1.08);
+      background: var(--gold-light);
+    }
+    .chatbot-toggle svg { width: 30px; height: 30px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    
+    .chatbot-window {
+      position: absolute;
+      bottom: 85px;
+      right: 0;
+      width: 340px;
+      height: 450px;
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(20px);
+      transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+    .chatbot-window.active {
+      opacity: 1;
+      pointer-events: all;
+      transform: translateY(0);
+    }
+    .chatbot-header {
+      background: var(--forest-dark);
+      color: var(--white);
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .chatbot-header h4 { font-size: 1rem; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 8px;}
+    .chatbot-header h4::before { content: ''; display: block; width: 8px; height: 8px; background: #4CAF50; border-radius: 50%; }
+    .chatbot-header button { background: none; border: none; color: var(--white); cursor: pointer; opacity: 0.7; transition: opacity 0.2s; display: flex; }
+    .chatbot-header button:hover { opacity: 1; }
+    .chatbot-header button svg { width: 20px; height: 20px; stroke-width: 2;}
+    
+    .chatbot-body {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+      background: #F4F6F5;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .chat-message {
+      max-width: 85%;
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+    .chat-message.bot {
+      background: var(--white);
+      color: var(--ink);
+      align-self: flex-start;
+      border-bottom-left-radius: 2px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+    }
+    .chat-message.user {
+      background: var(--forest);
+      color: var(--white);
+      align-self: flex-end;
+      border-bottom-right-radius: 2px;
+    }
+    
+    .chatbot-footer {
+      padding: 16px;
+      background: var(--white);
+      border-top: 1px solid var(--line);
+      display: flex;
+      gap: 12px;
+    }
+    .chatbot-footer input {
+      flex: 1;
+      padding: 12px 16px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      outline: none;
+      font-family: inherit;
+      font-size: 0.9rem;
+      background: #f9f9f9;
+      transition: all 0.2s;
+    }
+    .chatbot-footer input:focus { border-color: var(--gold); background: var(--white); }
+    .chatbot-footer button {
+      width: 42px;
+      height: 42px;
+      background: var(--gold);
+      border: none;
+      border-radius: 50%;
+      color: var(--forest-dark);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.2s;
+    }
+    .chatbot-footer button:hover { background: var(--gold-light); }
+    .chatbot-footer button svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    @media (max-width: 1024px) {
+      .hero-grid, .why-grid { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .ceo-grid, .contact-grid { grid-template-columns: 1fr; gap: 60px; }
+      .ceo-image-wrap { max-width: 500px; margin: 0 auto; }
+      .nav-links { display: none; }
+      .floating-badge { display: none; }
+      .hero { padding: 60px 0 80px; }
+      .about-image img { height: auto; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .stats-grid, .portfolio-grid { grid-template-columns: 1fr; }
+      .ceo-badge { right: 20px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 16px; }
+      .chatbot-window { right: -12px; width: 300px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a href="#home" class="brand">
+        <svg class="brand-logo" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M25 6L44 40H6L25 6Z" stroke="#F4B333" stroke-width="2.5" fill="none"/>
+          <path d="M25 18L37 40H13L25 18Z" stroke="#F4B333" stroke-width="2.5" fill="#072B20"/>
+          <path d="M25 6L15 24H35L25 6Z" fill="#F4B333"/>
+        </svg>
+        <div>
+          <span class="brand-text">Mayada</span>
+          <span class="brand-sub">Limited</span>
+        </div>
+      </a>
+      <nav class="nav-links">
+        <a href="#home" class="active">Home</a>
+        <a href="#about">About Us</a>
+        <a href="#services">Services 
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a href="#contact" class="btn-get-started">Get Started</a>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero" id="home">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <div class="hero-kicker">INNOVATION &bull; TECHNOLOGY &bull; IMPACT</div>
+        <h1 class="hero-title">Engineering The Future<br>With Innovation</h1>
+        <p class="hero-desc">
+          At Mayada Limited, we build practical technology solutions that power businesses, institutions and communities across East Africa. From education to fintech, from digital infrastructure to sustainable solutions — we turn ideas into impact.
+        </p>
+        <a href="#services" class="btn-primary">
+          Discover Our Services
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="hero-visual-stage">
+        <div class="hero-visual-main">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80" alt="Mayada Platform Dashboard & Mobile App">
+        </div>
+        <div class="floating-badge badge-cloud" title="Cloud Systems"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/></svg></div>
+        <div class="floating-badge badge-leaf" title="Carbon & Green Solutions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M11 20A7 7 0 019.8 6.1C15.5 5 17 4.4 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg></div>
+        <div class="floating-badge badge-edu" title="School Systems"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+        <div class="floating-badge badge-bus" title="Mayada Bus Fleet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="7.5" cy="19" r="1.5"/><circle cx="16.5" cy="19" r="1.5"/></svg></div>
+        <div class="floating-badge badge-gear" title="Digital Systems"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/></svg></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR SERVICES -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="services-header">
+        <div class="section-kicker">OUR SERVICES</div>
+        <h2 class="section-title">Comprehensive<br>Digital Solutions</h2>
+        <p class="section-intro">We offer a suite of integrated technology solutions designed to streamline operations, improve efficiency and create lasting value for our clients.</p>
+        <div class="gold-divider"></div>
+        <a href="#services" class="btn-dark">Explore All Services <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="services-grid">
+        <article class="service-card"><div class="service-img-wrap"><img src="https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&w=800&q=80" alt="Carbon Credits"></div><div class="service-body"><div class="service-icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2C8 6 6 10 6 14a6 6 0 0012 0c0-4-2-8-6-12z"/></svg></div><div><h3>Carbon Credits</h3><p>Supporting a greener future through sustainable solutions.</p></div><a href="#" class="service-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div></article>
+        <article class="service-card"><div class="service-img-wrap"><img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80" alt="Chama Manager"></div><div class="service-body"><div class="service-icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 19V6a2 2 0 012-2h12a2 2 0 012 2v13M8 10h8M8 14h5"/></svg></div><div><h3>Chama Manager</h3><p>Digital financial management for chamas and informal groups.</p></div><a href="#" class="service-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div></article>
+        <article class="service-card"><div class="service-img-wrap"><img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=800&q=80" alt="School Systems"></div><div class="service-body"><div class="service-icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div><div><h3>School Systems</h3><p>Complete school management and ERP solutions.</p></div><a href="#" class="service-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div></article>
+        <article class="service-card"><div class="service-img-wrap"><img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80" alt="Mayada Bus"></div><div class="service-body"><div class="service-icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="7.5" cy="19" r="1.5"/><circle cx="16.5" cy="19" r="1.5"/></svg></div><div><h3>Mayada Bus</h3><p>Smart school transport and fleet management.</p></div><a href="#" class="service-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div></article>
+        <article class="service-card"><div class="service-img-wrap"><img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80" alt="Hospital System"></div><div class="service-body"><div class="service-icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 21s-7-4.4-9.2-9C1.2 8.5 3 5 6.5 5c1.9 0 3.3 1 4 2 .7-1 2.1-2 4-2 3.5 0 5.3 3.5 3.7 7-2.2 4.6-6.2 9-6.2 9z"/></svg></div><div><h3>Hospital System</h3><p>Efficient and integrated healthcare management.</p></div><a href="#" class="service-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div></article>
+        <article class="service-card"><div class="service-img-wrap"><img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" alt="Biometric Identity"></div><div class="service-body"><div class="service-icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></div><div><h3>Biometric Identity</h3><p>Secure and accurate identity and attendance systems.</p></div><a href="#" class="service-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY MAYADA SECTION -->
+  <section class="why-mayada">
+    <div class="container why-grid">
+      <div>
+        <div class="why-kicker">WHY MAYADA</div>
+        <h2 class="why-title">Technology That Creates Real Impact</h2>
+        <p class="why-desc">We combine deep industry knowledge with the latest technology to deliver solutions that are reliable, scalable and built for Africa's future.</p>
+        <div class="stats-grid">
+          <div><div class="stat-number">6+</div><div class="stat-label">Solutions<br>& Products</div></div>
+          <div><div class="stat-number">10+</div><div class="stat-label">East African<br>Countries</div></div>
+          <div><div class="stat-number">2.5M+</div><div class="stat-label">Users Across<br>Our Platforms</div></div>
+          <div><div class="stat-number">6,500+</div><div class="stat-label">Schools<br>Supported</div></div>
+        </div>
+      </div>
+      <div class="why-right">
+        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80" alt="Dashboard Platform Preview">
+        <div class="handwritten-text">Smart systems.<br>Stronger communities.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT MAYADA SECTION -->
+  <section class="about-mayada" id="about">
+    <div class="container about-grid">
+      <div class="about-content">
+        <div class="section-kicker">ABOUT MAYADA</div>
+        <h2>Building a Smarter,<br>More Connected Africa</h2>
+        <p>Mayada Limited is a technology company focused on creating practical digital solutions that empower communities, institutions and businesses across East Africa.</p>
+        <a href="#about" class="btn-outline-gold">Learn More <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="about-image"><img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=1000&q=80" alt="Mayada Engineers working collaboratively"></div>
+      <div class="about-pillars">
+        <div class="pillar-item">Innovation</div>
+        <div class="pillar-item">Collaboration</div>
+        <div class="pillar-item">Sustainable Growth<div class="pillar-line"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CEO MESSAGE SECTION -->
+  <section class="ceo-message" id="leadership">
+    <div class="container ceo-grid">
+      <div class="ceo-image-wrap">
+        <img src="JERRY OLEM PASSPORT.jpg" alt="Olem Jerry - CEO and Founder">
+        <div class="ceo-badge">CEO & FOUNDER</div>
+      </div>
+      <div class="ceo-content">
+        <div class="section-kicker">LEADERSHIP</div>
+        <h2 class="section-title">Message from the CEO</h2>
+        <div class="ceo-quote-wrap">
+          <div class="quote-mark">"</div>
+          <p class="ceo-quote">At Mayada Limited, our vision extends far beyond just writing code. We are driven by a commitment to engineer scalable, practical technology that solves real-world challenges across East Africa. From empowering schools to optimizing healthcare, innovation is embedded in our DNA, but impact is our ultimate metric for success.</p>
+        </div>
+        <div class="ceo-signature">
+          <div class="ceo-name">Olem Jerry</div>
+          <div class="ceo-title">Chief Executive Officer, Mayada Limited</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO SECTION -->
+  <section class="portfolio" id="portfolio">
+    <div class="container">
+      <div class="services-header" style="max-width: 600px;">
+        <div class="section-kicker">OUR PORTFOLIO</div>
+        <h2 class="section-title">Recent Digital Transformations</h2>
+        <div class="gold-divider"></div>
+      </div>
+      <div class="portfolio-grid">
+        <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80" alt="Smart School Launch"><div class="portfolio-overlay"><h3>Nairobi Academy ERP Rollout</h3><p>School Systems & Integration</p></div></div>
+        <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1556761175-5973dc0f32d7?auto=format&fit=crop&w=800&q=80" alt="Business App Development"><div class="portfolio-overlay"><h3>Digital Chama Expansion</h3><p>Fintech & Community Solutions</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="section-kicker">GET IN TOUCH</div>
+      <h2 class="section-title" style="margin-bottom: 24px;">Let's Build the Future Together</h2>
+      <div class="gold-divider"></div>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="contact-item"><div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><h4>Head Office</h4><p>Nairobi, Kenya<br>Serving East Africa</p></div></div>
+          <div class="contact-item"><div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg></div><div><h4>Call Us</h4><p>+254 700 000 000</p></div></div>
+          <div class="contact-item"><div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg></div><div><h4>Email Us</h4><p>hello@mayada.co.ke</p></div></div>
+        </div>
+        <form class="contact-form" action="#" method="POST">
+          <div class="form-grid"><div class="form-group" style="margin-bottom:0;"><label for="name">Full Name</label><input type="text" id="name" class="form-control" placeholder="John Doe"></div><div class="form-group" style="margin-bottom:0;"><label for="email">Email Address</label><input type="email" id="email" class="form-control" placeholder="john@company.com"></div></div>
+          <div class="form-group"><label for="subject">Subject</label><input type="text" id="subject" class="form-control" placeholder="How can we help?"></div>
+          <div class="form-group"><label for="message">Message</label><textarea id="message" class="form-control" placeholder="Tell us about your project..."></textarea></div>
+          <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; border: none; cursor: pointer;">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="#home" class="brand footer-brand">
+            <svg class="brand-logo" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M25 6L44 40H6L25 6Z" stroke="#F4B333" stroke-width="2.5" fill="none"/><path d="M25 18L37 40H13L25 18Z" stroke="#F4B333" stroke-width="2.5" fill="#072B20"/><path d="M25 6L15 24H35L25 6Z" fill="#F4B333"/></svg>
+            <div><span class="brand-text">Mayada</span><span class="brand-sub">Limited</span></div>
+          </a>
+          <p class="footer-desc">Engineering scalable technology solutions to drive impact and optimize operations across East Africa.</p>
+        </div>
+        <div><h4 class="footer-heading">Company</h4><ul class="footer-links"><li><a href="#about">About Us</a></li><li><a href="#leadership">Leadership</a></li><li><a href="#portfolio">Our Work</a></li><li><a href="#contact">Contact</a></li></ul></div>
+        <div><h4 class="footer-heading">Solutions</h4><ul class="footer-links"><li><a href="#services">School Systems</a></li><li><a href="#services">Chama Manager</a></li><li><a href="#services">Mayada Bus</a></li><li><a href="#services">Carbon Credits</a></li></ul></div>
+        <div><h4 class="footer-heading">Legal</h4><ul class="footer-links"><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Service</a></li><li><a href="#">Support Center</a></li></ul></div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Mayada Limited. All rights reserved.</p>
+        <p>Built with precision in Kenya.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FLOATING CHATBOT WIDGET -->
+  <div class="chatbot-widget">
+    <!-- Chat Toggle Button -->
+    <button class="chatbot-toggle" id="chatbotToggle" aria-label="Open Chat">
+      <svg viewBox="0 0 24 24">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+      </svg>
+    </button>
+    
+    <!-- Chat Window -->
+    <div class="chatbot-window" id="chatbotWindow">
+      <div class="chatbot-header">
+        <h4>Mayada Support</h4>
+        <button id="chatbotClose" aria-label="Close Chat">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      
+      <div class="chatbot-body" id="chatbotBody">
+        <div class="chat-message bot">
+          Hello! Welcome to Mayada Limited. How can we assist you with our technology solutions today?
+        </div>
+      </div>
+      
+      <div class="chatbot-footer">
+        <input type="text" id="chatInput" placeholder="Write a message..." autocomplete="off">
+        <button id="chatSend" aria-label="Send Message">
+          <svg viewBox="0 0 24 24">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHATBOT JAVASCRIPT -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const chatbotToggle = document.getElementById('chatbotToggle');
+      const chatbotWindow = document.getElementById('chatbotWindow');
+      const chatbotClose = document.getElementById('chatbotClose');
+      const chatInput = document.getElementById('chatInput');
+      const chatSend = document.getElementById('chatSend');
+      const chatbotBody = document.getElementById('chatbotBody');
+
+      // Toggle Chat Window Open
+      chatbotToggle.addEventListener('click', () => {
+        chatbotWindow.classList.add('active');
+        chatInput.focus();
+      });
+
+      // Close Chat Window
+      chatbotClose.addEventListener('click', () => {
+        chatbotWindow.classList.remove('active');
+      });
+
+      // Handle Sending Messages
+      function sendMessage() {
+        const text = chatInput.value.trim();
+        if (!text) return;
+
+        // Append User Message
+        const userMsg = document.createElement('div');
+        userMsg.className = 'chat-message user';
+        userMsg.textContent = text;
+        chatbotBody.appendChild(userMsg);
+        
+        // Clear input and scroll down
+        chatInput.value = '';
+        chatbotBody.scrollTop = chatbotBody.scrollHeight;
+
+        // Simulate Bot Reply after a short delay
+        setTimeout(() => {
+          const botMsg = document.createElement('div');
+          botMsg.className = 'chat-message bot';
+          botMsg.textContent = "Thank you for reaching out! A Mayada representative will connect with you shortly.";
+          chatbotBody.appendChild(botMsg);
+          chatbotBody.scrollTop = chatbotBody.scrollHeight;
+        }, 1200);
+      }
+
+      // Click Event for Send Button
+      chatSend.addEventListener('click', sendMessage);
+
+      // Enter Key Event for Input
+      chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          sendMessage();
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
